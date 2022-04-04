@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: saifb
+Build-Jdk: 17.0.1
+Implementation-Title: Timesheet-spring-boot-core-data-jpa-mvc-REST-1
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: tn.esprit.spring
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
+ -starter-parent/Timesheet-spring-boot-core-data-jpa-mvc-REST-1
+Created-By: Maven Integration for Eclipse
+
