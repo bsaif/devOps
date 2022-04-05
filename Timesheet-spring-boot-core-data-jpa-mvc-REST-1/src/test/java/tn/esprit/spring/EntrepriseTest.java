@@ -28,6 +28,7 @@ public class EntrepriseTest {
 	}
 
 	@Test
+	@Order(2)
 	public void testAjouterDepartment() {
 		Departement dep = new Departement("Agriculture");
 		int id = serviceEntreprise.ajouterDepartement(dep);
