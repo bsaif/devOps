@@ -21,7 +21,6 @@ public class EntrepriseTest {
 	@Autowired
 	private IEntrepriseService serviceEntreprise;
 
-
 	@Test
 	@Order(1)
 	public void testAjouterEntreprise() {
@@ -35,32 +34,56 @@ public class EntrepriseTest {
 	public void testAjouterDepartment() {
 		Departement dep = new Departement("Agriculture");
 		int id = serviceEntreprise.ajouterDepartement(dep);
-		Assert.assertNotNull(serviceEntreprise.getAllDepartementsNamesByEntreprise(id));
+		Assert.assertNotNull(serviceEntreprise.getDepartementById(id));
 	}
-	
+
 	@Test
 	@Order(3)
-	public void testAffecterDepartementAEntreprise() {
+	public void testaffecterDepartementAEntreprise() {
 		Entreprise ent = new Entreprise("Espritt", "Education");
 		int idEntrep = serviceEntreprise.ajouterEntreprise(ent);
 
 		Departement dep = new Departement("Web");
 		int idDep = serviceEntreprise.ajouterDepartement(dep);
 
-		Assert.assertNotEquals(idDep,idEntrep);
+		int idEntrepDep=serviceEntreprise.affecterDepartementAEntreprise(idDep, idEntrep);
+		Assert.assertEquals(idEntrepDep,idEntrep);
+
 	}
-	
+
 	@Test
 	@Order(4)
-	public void testGetAllDepartementsNamesByEntreprise() {
-		Entreprise ent = new Entreprise("Espritt", "Education");
-		List<String> list = serviceEntreprise.getAllDepartementsNamesByEntreprise(132);
-		Assert.assertNotNull(list);
+	public void testdeleteEntrepriseById() {
+		
+		Entreprise ent = new Entreprise("Soc", "DEV");
+		int id = serviceEntreprise.ajouterEntreprise(ent);
+		
+		int value = serviceEntreprise.deleteEntrepriseById(id);
+		Assert.assertEquals(1, value);
+		
+		int WrongValue = serviceEntreprise.deleteEntrepriseById(1812132);
+		Assert.assertEquals(WrongValue, -1);
+
 	}
-	
+
 	@Test
 	@Order(5)
+	public void testdeleteDepartementById() {
+		Departement dep = new Departement("Info");
+		int id = serviceEntreprise.ajouterDepartement(dep);
+		
+		int value = serviceEntreprise.deleteDepartementById(id);
+		Assert.assertEquals(1, value);
+		
+		int WrongValue = serviceEntreprise.deleteDepartementById(1812132);
+		Assert.assertEquals(WrongValue, -1);
+
+	}
+
+	@Test
+	@Order(6)
 	public void testgetEntrepriseById() {
+
 		Entreprise ent = new Entreprise("Soc", "DEV");
 		int id = serviceEntreprise.ajouterEntreprise(ent);
 		
@@ -69,8 +92,22 @@ public class EntrepriseTest {
 
 		Entreprise e2 = serviceEntreprise.getEntrepriseById(213232);
 		Assert.assertNull(e2);
-	}
-	
+	};
+
+	@Test
+	@Order(7)
+	public void testgetDepartementById() {
+		Departement dep = new Departement("Info");
+		int id = serviceEntreprise.ajouterDepartement(dep);
+		
+		
+		Departement d1 = serviceEntreprise.getDepartementById(id);
+		Assert.assertNotNull(d1);
+
+		Departement d2 = serviceEntreprise.getDepartementById(213232);
+		Assert.assertNull(d2);
+	};
+
 	
 	
 
