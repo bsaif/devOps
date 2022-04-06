@@ -14,6 +14,10 @@ import javax.persistence.TemporalType;
 @Entity
 public class Contrat implements Serializable {
 	
+	public Contrat() {
+		super();
+	}
+
 	private static final long serialVersionUID = 6191889143079517027L;
 
 	@Id
@@ -30,7 +34,7 @@ public class Contrat implements Serializable {
 	@OneToOne
 	private Employe employe;
 
-	public Contrat() {
+	public Contrat(int i, Date date, String string, int j) {
 		super();
 	}
 	
@@ -40,6 +44,8 @@ public class Contrat implements Serializable {
 		this.salaire = salaire;
 	}
 
+
+	
 
 	public Date getDateDebut() {
 		return dateDebut;
